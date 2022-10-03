@@ -64,7 +64,8 @@ class TweetController extends Controller
      */
     public function show($id)
     {
-        //
+        $tweet = Tweet::find($id);
+        return view('tweet.show', compact('tweet'));
     }
 
     /**
@@ -98,6 +99,8 @@ class TweetController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $result = Tweet::find($id)->delete();
+        //ddd($result);
+        return redirect()->route('tweet.index');
     }
 }
