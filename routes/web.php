@@ -1,3 +1,5 @@
+
+
 <?php
 
 use Illuminate\Support\Facades\Route;
@@ -13,17 +15,19 @@ use App\Http\Controllers\TweetController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+// 🔽 ここを編集
 Route::group(['middleware' => 'auth'], function () {
+  Route::get('/tweet/mypage', [TweetController::class, 'mydata'])->name('tweet.mypage');
   Route::resource('tweet', TweetController::class);
 });
 
-
 Route::get('/', function () {
-    return view('welcome');
+  return view('welcome');
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+  return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
